@@ -18,6 +18,7 @@ namespace BlazorBattles.Server.Migrations
                     Attack = table.Column<int>(type: "int", nullable: false),
                     Defense = table.Column<int>(type: "int", nullable: false),
                     HitPoints = table.Column<int>(type: "int", nullable: false),
+                    maxHp = table.Column<int>(type: "int", nullable: false),
                     BananaCost = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

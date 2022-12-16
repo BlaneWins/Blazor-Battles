@@ -42,10 +42,10 @@ namespace BlazorBattles.Server.Controllers
 
             foreach (var userUnit in userUnits)
             {
-                if (userUnit.HitPoints <= 0)
+                if (userUnit.HitPoints != userUnit.Unit.maxHp)
                 {
                     armyAlreadyAlive = false;
-                    userUnit.HitPoints = new Random().Next(0, userUnit.Unit.HitPoints);
+                    userUnit.HitPoints += userUnit.Unit.maxHp / 2;
                 }
             }
 

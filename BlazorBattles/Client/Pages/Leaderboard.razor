@@ -71,7 +71,7 @@ else
         Console.WriteLine($"StartBattle with {opponentId}.");
         var result = await BattleService.StartBattle(opponentId);
         if (result.RoundsFought <= 0)
-            ToastService.ShowInfo("The battle did not take place.");
+            ToastService.ShowInfo("The battle did not take place. The user does not have any army units left alive.");
         else if (result.IsVictory)
             ToastService.ShowSuccess("You won the battle!");
         else 

@@ -108,6 +108,8 @@ namespace BlazorBattles.Server.Controllers
         {
             result.AttackerDamageSum = attackerDamageSum;
             result.OpponentDamageSum = opponentDamageSum;
+            int winBananas = 500;
+            int loseBananas = 1000;
 
             attacker.Battles++;
             opponent.Battles++;
@@ -117,14 +119,14 @@ namespace BlazorBattles.Server.Controllers
                 attacker.Victories++;
                 opponent.Defeats++;
                 attacker.Bananas += opponentDamageSum;
-                opponent.Bananas += attackerDamageSum * 10;
+                opponent.Bananas += loseBananas;
             }
             else
             {
                 attacker.Defeats++;
                 opponent.Victories++;
-                attacker.Bananas += opponentDamageSum * 10;
-                opponent.Bananas += attackerDamageSum;
+                attacker.Bananas += attackerDamageSum * 2;
+                opponent.Bananas += winBananas;
             }
 
             StoreBattleHistory(attacker, opponent, result);
