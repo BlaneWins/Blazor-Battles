@@ -38,19 +38,23 @@ namespace BlazorBattles.Server.Controllers
                 return BadRequest("Not enough bananas! You need 1000 bananas to revive your army.");
             }
 
-            bool armyAlreadyAlive = true;
+            bool armyAlreadyFullHp = true;
 
             foreach (var userUnit in userUnits)
             {
-                if (userUnit.HitPoints != userUnit.Unit.maxHp)
+                if (userUnit.HitPoints != userUnit.Unit.maxHp && userUnit.HitPoints < userUnit.Unit.maxHp)
                 {
-                    armyAlreadyAlive = false;
+                    armyAlreadyFullHp = false;
                     userUnit.HitPoints += userUnit.Unit.maxHp / 2;
+                    if (userUnit.HitPoints > userUnit.Unit.maxHp)
+                    {
+                        userUnit.HitPoints = userUnit.Unit.maxHp;
+                    }
                 }
             }
 
-            if (armyAlreadyAlive)
-                return BadRequest("Your army is already alive.");
+            if (armyAlreadyFullHp)
+                return BadRequest("Your army is already full health.");
 
             user.Bananas -= bananaCost;
 
